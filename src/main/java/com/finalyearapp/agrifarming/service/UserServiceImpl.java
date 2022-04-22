@@ -25,7 +25,7 @@ public class UserServiceImpl implements UserService{
 	private UserRepository userRepository;
 	@Autowired
 	private BCryptPasswordEncoder passwordEncoder;
-	
+	private User user;
 	public UserServiceImpl(UserRepository userRepository) {
 		super();
 		this.userRepository = userRepository;
@@ -37,7 +37,7 @@ public class UserServiceImpl implements UserService{
 		User user = new User(registrationDto.getFullName(), registrationDto.getEmail(),
 				passwordEncoder.encode(registrationDto.getPassword()),registrationDto.getDistrict()
 				,registrationDto.getSector(),registrationDto.getCell(),
-				Arrays.asList(new Role("ROLE_USER")));
+				Arrays.asList(new Role("ADMIN")));
 		
 		return userRepository.save(user);
 	}
@@ -51,18 +51,9 @@ public class UserServiceImpl implements UserService{
 	        user.setPassword(passwordEncoder.encode(user.getPassword()));
 	        userRepository.save(user);
 	    }
-		public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-			
-			User user = userRepository.findByEmail(username);
-			if(user == null) {
-				throw new UsernameNotFoundException("Invalid username or password.");
-			}
-			return new org.springframework.security.core.userdetails.User(user.getEmail(), user.getPassword(), mapRolesToAuthorities(user.getRoles()));		
-		}
-		
-		private Collection<? extends GrantedAuthority> mapRolesToAuthorities(Collection<Role > roles){
-			return roles.stream().map(role -> new SimpleGrantedAuthority(role.getName())).collect(Collectors.toList());
-		}
+		public boolean hasRole(String roleName) {
+		return user.hasRole(roleName);
+	}
 	@Override
 	public User getUserById(long id) {
 		Optional<User>optional=userRepository.findById(id);

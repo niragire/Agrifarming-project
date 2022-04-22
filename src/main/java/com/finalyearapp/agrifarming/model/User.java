@@ -1,6 +1,7 @@
 package com.finalyearapp.agrifarming.model;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.Iterator;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -44,7 +45,17 @@ public class User {
                     name = "role_id", referencedColumnName = "id"))
 
     private Collection<Role> roles;
+    public boolean hasRole(String roleName) {
+        Iterator<Role> iterator = this.roles.iterator();
+        while (iterator.hasNext()) {
+            Role role = iterator.next();
+            if (role.getName().equals(roleName)) {
+                return true;
+            }
+        }
 
+        return false;
+    }
     public User() {
 
     }

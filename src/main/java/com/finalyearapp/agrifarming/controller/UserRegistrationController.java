@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.servlet.http.HttpServletRequest;
 
 
 @Controller
@@ -46,5 +47,16 @@ public class UserRegistrationController {
         }
 
         return "redirect:/registration?success";
+    }
+    @GetMapping("/default")
+    public String redirectAfterLogin(HttpServletRequest request) {
+        if (request.isUserInRole("ADMIN")) {
+            return "redirect:/api/superAdmin";
+        }else if(request.isUserInRole("USER")) {
+            return "redirect:/";
+        }else {
+            return "redirect:/login";
+        }
+
     }
 }

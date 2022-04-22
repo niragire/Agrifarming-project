@@ -22,8 +22,9 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Autowired
-    private UserService userService;
-
+   private UserPrincipalDetailsService userPrincipalDetailsService;
+//    @Autowired
+//    private LoginSuccessHandler loginSuccessHandler;
     @Bean
     public BCryptPasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
@@ -32,7 +33,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Bean
     public DaoAuthenticationProvider authenticationProvider() {
         DaoAuthenticationProvider auth = new DaoAuthenticationProvider();
-        auth.setUserDetailsService(userService);
+        auth.setUserDetailsService(userPrincipalDetailsService);
         auth.setPasswordEncoder(passwordEncoder());
         return auth;
     }
@@ -51,11 +52,14 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                         "/forgot-password",
                         "/reset-password",
                         "/static/img/**").permitAll()
+                .antMatchers("/api/expense").authenticated()
+                .antMatchers("/api/category").authenticated()
+                .antMatchers("/api/superAdmin").hasRole("ADMIN")
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
-                .loginPage("/login")
-                .permitAll()
+                .loginPage("/login").permitAll()
+                .defaultSuccessUrl("/registration/default")
                 .and()
                 .logout()
                 .invalidateHttpSession(true)
