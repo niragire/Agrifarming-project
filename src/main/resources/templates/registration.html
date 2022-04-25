@@ -6,8 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" href="/fonts/icomoon/style.css">
-
     <link rel="stylesheet" href="/css/owl.carousel.min.css">
 
     <!-- Bootstrap CSS -->
@@ -15,6 +13,10 @@
     
     <!-- Style -->
     <link rel="stylesheet" href="/css/style.css">
+    <link crossorigin="anonymous"
+          href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"
+          integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn"
+          rel="stylesheet">
 
     <title>Registration</title>
   </head>
@@ -31,7 +33,7 @@
               <div class="mb-4">
               <h3>Sign Up</h3>
             </div>
-            <form th:action="@{/registration}" class="needs-validation" method="post" th:object="${user}">
+            <form th:action="@{/registration}" class="needs-validation" method="post" th:object="${user}" novalidate>
               <div class="form-group first">
                 <label for="fullName">Business Name</label>
                 <input class="form-control"   type="text"
@@ -45,12 +47,12 @@
               
               <div class="form-group last mb-4">
                 <label for="email">Email</label>
-                <input class="form-control" type="text"
+                <input class="form-control" type="email"
                 id="email"
                 name="email"
                 th:field="*{email}" required>
                 <div class="invalid-feedback">
-                  Please Enter Email
+                  Please Enter a valid Email
                 </div>
               </div>
               <div class="form-group last mb-4">

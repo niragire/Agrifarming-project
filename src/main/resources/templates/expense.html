@@ -27,7 +27,6 @@
 								</label></th>
 								<th scope="col">Name</th>
 								<th scope="col">Registered</th>
-								<th scope="col">Category</th>
 								<th scope="col">Supplier</th>
 								<th scope="col">Quantity</th>
 								<th scope="col">Amount Spent</th>
@@ -42,7 +41,6 @@
 								</label></th>
 								<td th:text="${expense.nameOfExpense}"></td>
 								<td th:text="${expense.createdAt}"></td>
-								<td th:text="${expense.category.categoryName}"></td>
 								<td th:text="${expense.supplier}"></td>
 								<td th:text="${expense.quantity}"></td>
 								<td th:text="${expense.amountSpent}"></td>
@@ -50,7 +48,7 @@
 								    <a th:href="@{/api/updateExpenseById/{id}(id=${expense.expenseId})}" id="editButton" title="Edit" class="btn btn-success btn-xs">
                                         <i class="fa fa-edit "></i>
                                     </a>
-								 <a th:href="@{/api/deleteExpenseById/{id}(id=${expense.expenseId})}" title="Remove Student" class="btn btn-danger btn-xs">
+								 <a th:href="@{/api/deleteExpenseById/{id}(id=${expense.expenseId})}" title="Remove" class="btn btn-danger btn-xs">
                                         <i class="fa fa-trash-o "></i>
                                     </a>
 								</td>

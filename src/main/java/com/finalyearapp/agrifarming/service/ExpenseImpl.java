@@ -4,8 +4,10 @@ import java.util.List;
 import java.util.Optional;
 
 import com.finalyearapp.agrifarming.model.Expense;
+import com.finalyearapp.agrifarming.model.User;
 import com.finalyearapp.agrifarming.repository.ExpenseRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 
 
@@ -13,7 +15,8 @@ import org.springframework.stereotype.Service;
 public class ExpenseImpl implements ExpenseService{
 	@Autowired
 	private ExpenseRepository expenseRepository;
-	
+	@Autowired
+	private UserService userService;
 	@Override
 	public List<Expense> getAllExspenses() {
 		// TODO Auto-generated method stub
@@ -27,7 +30,9 @@ public class ExpenseImpl implements ExpenseService{
 		expenseRepository.save(expense);
 		
 	}
-
+	public List<Expense> findAllExpenses(Long user_id){
+		return expenseRepository.findAllById(user_id);
+	}
 	@Override
 	public Expense getExpenseById(Long id) {
 		// TODO Auto-generated method stub

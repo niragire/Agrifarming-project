@@ -17,6 +17,8 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
 
 
 @Entity
@@ -29,7 +31,6 @@ public class User {
 
     @Column(name = "first_name")
     private String fullName;
-
     private String email;
 
     private String password;
@@ -56,6 +57,7 @@ public class User {
 
         return false;
     }
+
     public User() {
 
     }

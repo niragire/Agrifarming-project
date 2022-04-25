@@ -4,6 +4,7 @@ package com.finalyearapp.agrifarming.controller;
 import com.finalyearapp.agrifarming.model.Category;
 import com.finalyearapp.agrifarming.model.User;
 import com.finalyearapp.agrifarming.service.CategoryService;
+import com.finalyearapp.agrifarming.service.ExpenseImpl;
 import com.finalyearapp.agrifarming.service.ExpenseService;
 import com.finalyearapp.agrifarming.service.UserService;
 import org.slf4j.Logger;
@@ -25,6 +26,8 @@ public class MainController {
 	private CategoryService categoryService;
 	@Autowired
 	private ExpenseService expenseService;
+	@Autowired
+	private ExpenseImpl expenseImpl;
 	Logger logger= LoggerFactory.getLogger(this.getClass());
 	@GetMapping("/login")
 	public String login() {
@@ -49,7 +52,7 @@ public class MainController {
 		model.addAttribute("categoryName",categoryName);
 		model.addAttribute("expenseNumber",expenseNumber);
 		model.addAttribute("category",categoryService.getAllCategories().size());
-		model.addAttribute("expense",expenseService.getAllExspenses().size());
+		model.addAttribute("expense",expenseImpl.findAllExpenses(user.getId()).size());
 		model.addAttribute("userLogged", user);
 		return "index";
 	}

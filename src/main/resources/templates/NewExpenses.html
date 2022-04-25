@@ -23,7 +23,7 @@
             <div class="card card-4">
                 <div class="card-body">
                     <h2 class="title">Expense Form</h2>
-                    <form th:action="@{/api/saveExpense}" class="needs-validation" novalidate  th:object="${expense}"  method="post" enctype="multipart/form-data">
+                    <form th:action="@{/api/saveExpense}" class="needs-validation" th:object="${expense}"  method="post" enctype="multipart/form-data">
                             <div class="card-body " id="bar-parent2">
                                 <div class="row">
                                     <div class="col-md-6 col-sm-6">
@@ -31,18 +31,10 @@
                                         <div class="form-group">
                                             <label class="text-dark">Name</label>
                                             <input type="text"  required class="form-control" th:field="*{nameOfExpense}" placeholder="Enter ...">
-                                            <div class="invalid-feedback">
-                                                Please Enter Expense Name
-                                            </div>
-
                                         </div>
                                           <div class="form-group">
                                             <label class="text-dark">Date</label>
                                             <input type="date"  required class="form-control" th:field="*{createdAt}" placeholder="Enter ...">
-                                            <div class="invalid-feedback">
-                                                Please Enter The Date
-                                            </div>
-
                                         </div>
                                         <div class="form-group">
                                             <label class="text-dark">Categories</label>
@@ -50,33 +42,18 @@
                                                 <option th:value="${null}">-SELECT-</option>
                                                 <option th:each="expense: ${listAllCategories}" th:value="${expense.categoryId}" th:text="${expense.categoryName}" />
                                             </select>
-                                            <div class="invalid-feedback">
-                                                Please Select Category
-                                            </div>
                                         </div>
                                           <div class="form-group">
                                             <label class="text-dark">Supplier</label>
                                             <input type="text"  required class="form-control" th:field="*{supplier}" placeholder="Enter ...">
-                                            <div class="invalid-feedback">
-                                                Please Enter Supplier Name
-                                            </div>
-
                                         </div>
                                         <div class="form-group">
                                             <label class="text-dark">Quantity</label>
                                             <input type="text"  required class="form-control" th:field="*{quantity}" placeholder="Enter ...">
-                                            <div class="invalid-feedback">
-                                                Please Enter Quantity
-                                            </div>
-
                                         </div>
                                           <div class="form-group">
                                             <label class="text-dark">Amount</label>
-                                            <input type="number"  required class="form-control" th:field="*{amountSpent}" placeholder="Enter ...">
-                                            <div class="invalid-feedback">
-                                                Please Enter Amount Name
-                                            </div>
-
+                                            <input type="number"  required class="form-control" th:field="*{amountSpent}" placeholder="Enter ..."
                                         </div>
                                     </div>
                                 </div>
@@ -96,27 +73,6 @@
 
     <!-- Main JS-->
 </div>
-    <script>
-        (function () {
-            'use strict'
-
-            // Fetch all the forms we want to apply custom Bootstrap validation styles to
-            var forms = document.querySelectorAll('.needs-validation')
-
-            // Loop over them and prevent submission
-            Array.prototype.slice.call(forms)
-                .forEach(function (form) {
-                    form.addEventListener('submit', function (event) {
-                        if (!form.checkValidity()) {
-                            event.preventDefault()
-                            event.stopPropagation()
-                        }
-
-                        form.classList.add('was-validated')
-                    }, false)
-                })
-        })()
-    </script>
 </body><!-- This templates was made by Colorlib (https://colorlib.com) -->
 
 </html>

@@ -2,13 +2,7 @@ package com.finalyearapp.agrifarming.model;
 
 import java.util.Date;
 
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 import javax.validation.constraints.Past;
 
 import org.springframework.format.annotation.DateTimeFormat;
@@ -27,6 +21,9 @@ public class Expense {
 	private String supplier;
 	private int quantity;
 	private int amountSpent;
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "user_id",referencedColumnName = "id")
+	private User user;
 	public Long getExpenseId() {
 		return expenseId;
 	}
@@ -71,5 +68,13 @@ public class Expense {
 
 	public void setQuantity(int quantity) {
 		this.quantity = quantity;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
 	}
 }
