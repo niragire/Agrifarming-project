@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 
 @Controller
+@RequestMapping("/api/expense")
 public class ExpenseController{
 	@Autowired
 	private ExpenseService expenseService;
@@ -24,21 +25,21 @@ public class ExpenseController{
 	private UserService userService;
 	@Autowired
 	private ExpenseImpl expense;
-	@RequestMapping("/api/homeExpenses")
+	@GetMapping("/homeExpenses")
 	public String homePage(Model model,Authentication authentication) {
 		String findAuthenticatedUser=authentication.getName();
 		User user=userService.findByEmail(findAuthenticatedUser);
 		model.addAttribute("listAllExpenses", expense.findAllExpenses(user.getId()));
 		return "expense";
 	}
-	@GetMapping("/api/showNewExpenses")
+	@GetMapping("/showNewExpenses")
 	public String showNewExpenses(Model model) {
 		Expense expense=new Expense();
 		model.addAttribute("expense", expense);
 		model.addAttribute("listAllCategories", categoryService.getAllCategories());
 		return "NewExpenses";
 	}
-	@PostMapping("/api/saveExpense")
+	@PostMapping("/saveExpense")
 	public String saveExpenses(@ModelAttribute("expense") Expense expense, Model model, Authentication authentication) {
 		try {
 			String findAuthenticatedUser=authentication.getName();
@@ -49,9 +50,9 @@ public class ExpenseController{
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return "redirect:/api/homeExpenses";
+		return "redirect:/api/expense/homeExpenses";
 	}
-	@GetMapping("/api/updateExpenseById/{id}")
+	@GetMapping("/updateExpenseById/{id}")
 	public String findExpenseByid(@PathVariable(value = "id") long id,Model model) {
 		try {
 		Expense expense=expenseService.getExpenseById(id);
@@ -62,13 +63,13 @@ public class ExpenseController{
 		}
 		return "updateExpense";
 	}
-	@GetMapping("/api/deleteExpenseById/{id}")
+	@GetMapping("/deleteExpenseById/{id}")
 	public String deleteExpenseById(@PathVariable(value = "id")long id,Model model) {
 		try {
 			expenseService.deleteById(id);
 		}catch(Exception ex) {
 			ex.printStackTrace();
 		}
-		return "redirect:/api/homeExpenses";
+		return "redirect:/api/expense/homeExpenses";
 	}
 }

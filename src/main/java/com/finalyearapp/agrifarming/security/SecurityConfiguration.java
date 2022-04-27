@@ -52,10 +52,12 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                         "/forgot-password",
                         "/reset-password",
                         "/static/img/**").permitAll()
-                .antMatchers("/api/expense").authenticated()
-                .antMatchers("/api/category").authenticated()
-                .antMatchers("/api/superAdmin").hasRole("ADMIN")
-                .anyRequest().authenticated()
+                .antMatchers("/").authenticated()
+                .antMatchers("/api/superAdmin").authenticated()
+                .antMatchers("/api/superAdmin").hasAnyRole("ADMIN")
+                .antMatchers("/api/editProfile").hasAnyRole("USER")
+                .antMatchers("/api/expense/**").hasAnyRole("USER")
+                .antMatchers("/api/category/**").hasAnyRole("USER")
                 .and()
                 .formLogin()
                 .loginPage("/login").permitAll()

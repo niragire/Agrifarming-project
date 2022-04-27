@@ -51,7 +51,7 @@
           <a class="navbar-brand brand-logo" href="index.html"
             ><img src="assets/images/logo.svg" alt="logo"
           /></a>
-          <a class="navbar-brand brand-logo-mini" href="index.html"
+          <a class="navbar-brand brand-logo-mini" th:href="@{/}"
             ><img src="assets/images/logo-mini.svg" alt="logo"
           /></a>
         </div>
@@ -172,12 +172,12 @@
               <div class="collapse" id="ui-basic">
                 <ul class="nav flex-column sub-menu">
                   <li class="nav-item">
-                    <a class="nav-link" th:href="@{/api/showNewCategory}"
+                    <a class="nav-link" th:href="@{/api/category/showNewCategory}"
                       >Add Category</a
                     >
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" th:href="@{/api/homeExpenses}"
+                    <a class="nav-link" th:href="@{/api/category/homeCategory}"
                       >View Category</a
                     >
                   </li>
@@ -201,12 +201,12 @@
               <div class="collapse" id="ui-basic">
                 <ul class="nav flex-column sub-menu">
                   <li class="nav-item">
-                    <a class="nav-link" th:href="@{/api/showNewExpenses}"
+                    <a class="nav-link" th:href="@{/api/expense/showNewExpenses}"
                       >Add Expense</a
                     >
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" th:href="@{/api/homeExpenses}"
+                    <a class="nav-link" th:href="@{/api/expense/homeExpenses}"
                       >View Expense</a
                     >
                   </li>

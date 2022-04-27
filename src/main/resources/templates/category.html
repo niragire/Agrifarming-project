@@ -14,7 +14,7 @@
 
 			<div class="container">
 			<br>
-				  <a th:href="@{/api/showNewCategory}" class="btn btn-primary"><i class="material-icons">&#xE147;</i> <span>Add New Category</span></a>
+				  <a th:href="@{/api/category/showNewCategory}" class="btn btn-primary"><i class="material-icons">&#xE147;</i> <span>Add New Category</span></a>
 
 				<div class="table-responsive">
 
@@ -37,10 +37,10 @@
 								</label></th>
 								<td th:text="${category.categoryName}"></td>
 								<td>
-								    <a th:href="@{/api/updateCategoryById/{id}(id=${category.categoryId})}" id="editButton" title="Edit" class="btn btn-success btn-xs">
+								    <a th:href="@{/api/category/updateCategoryById/{id}(id=${category.categoryId})}" id="editButton" title="Edit" class="btn btn-success btn-xs">
                                         <i class="fa fa-edit "></i>
                                     </a>
-								 <a th:href="@{/api/deleteCategoryById/{id}(id=${category.categoryId})}" title="Remove Student" class="btn btn-danger btn-xs">
+								 <a th:href="@{/api/category/deleteCategoryById/{id}(id=${category.categoryId})}" title="Remove Student" class="btn btn-danger btn-xs">
                                         <i class="fa fa-trash-o "></i>
                                     </a>
 								</td>

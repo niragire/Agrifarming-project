@@ -14,7 +14,7 @@
 
 			<div class="container">
 			<br>
-				  <a th:href="@{/api/showNewExpenses}" class="btn btn-primary"><i class="material-icons">&#xE147;</i> <span>Add New Expense</span></a>
+				  <a th:href="@{/api/expense/showNewExpenses}" class="btn btn-primary"><i class="material-icons">&#xE147;</i> <span>Add New Expense</span></a>
 
 				<div class="table-responsive">
 
@@ -45,10 +45,10 @@
 								<td th:text="${expense.quantity}"></td>
 								<td th:text="${expense.amountSpent}"></td>
 								<td>
-								    <a th:href="@{/api/updateExpenseById/{id}(id=${expense.expenseId})}" id="editButton" title="Edit" class="btn btn-success btn-xs">
+								    <a th:href="@{/api/expense/updateExpenseById/{id}(id=${expense.expenseId})}" id="editButton" title="Edit" class="btn btn-success btn-xs">
                                         <i class="fa fa-edit "></i>
                                     </a>
-								 <a th:href="@{/api/deleteExpenseById/{id}(id=${expense.expenseId})}" title="Remove" class="btn btn-danger btn-xs">
+								 <a th:href="@{/api/expense/deleteExpenseById/{id}(id=${expense.expenseId})}" title="Remove" class="btn btn-danger btn-xs">
                                         <i class="fa fa-trash-o "></i>
                                     </a>
 								</td>

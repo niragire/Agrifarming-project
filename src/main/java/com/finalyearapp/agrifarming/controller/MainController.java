@@ -2,6 +2,7 @@ package com.finalyearapp.agrifarming.controller;
 
 
 import com.finalyearapp.agrifarming.model.Category;
+import com.finalyearapp.agrifarming.model.Expense;
 import com.finalyearapp.agrifarming.model.User;
 import com.finalyearapp.agrifarming.service.CategoryService;
 import com.finalyearapp.agrifarming.service.ExpenseImpl;
@@ -14,6 +15,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -76,5 +78,13 @@ public class MainController {
 	    model.addAttribute("userSize",userService.findAllUsers().size());
 	    return "SuperAdmin";
     }
-
+	@GetMapping("/api/searchedUser/{id}")
+	public String getUserExpenses(@PathVariable(value = "id")long user_id,Model model){
+		User user=userService.getUserById(user_id);
+				if(user!=null){
+					List<Expense>expenses=user.getExpenses();
+					model.addAttribute("expenses",expenses);
+				}
+		return "userExpense";
+	}
 }

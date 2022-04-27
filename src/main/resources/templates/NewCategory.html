@@ -23,7 +23,7 @@
             <div class="card card-4">
                 <div class="card-body">
                     <h2 class="title">Category Form</h2>
-                    <form th:action="@{/api/saveCategory}" class="needs-validation" novalidate  th:object="${category}"  method="post" enctype="multipart/form-data">
+                    <form th:action="@{/api/category/saveCategory}" class="needs-validation" novalidate  th:object="${category}"  method="post" enctype="multipart/form-data">
                             <div class="card-body " id="bar-parent2">
                                 <div class="row">
                                     <div class="col-md-6 col-sm-6">
@@ -41,7 +41,7 @@
                             </div>
                                 <div class="col-md-12 col-sm-12" style="display: flex;">
                                 <button type="submit" class="btn btn-round btn-success m-l-20 mb-lg-5"><i class="fa fa-plus"></i>Add</button>
-                                    <a href="/api/homeCategory" class="btn btn-round btn-warning m-l-20 mb-lg-5"><i class="fa fa-arrow-left "></i>Back</a>
+                                    <a href="/api/category/homeCategory" class="btn btn-round btn-warning m-l-20 mb-lg-5"><i class="fa fa-arrow-left "></i>Back</a>
 
                                 </div>
                             </form>
