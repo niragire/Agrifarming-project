@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="/css/owl.carousel.min.css">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    
+    <!-- Style -->
+    <link rel="stylesheet" href="/css/style.css">
+    <link crossorigin="anonymous"
+          href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"
+          integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn"
+          rel="stylesheet">
+
+    <title>Registration</title>
+  </head>
+  <body>
+  <div class="content">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6">
+          <img src="https://i.imgur.com/nKCZEiK.jpeg" alt="Image" class="img-fluid">
+        </div>
+        <div class="col-md-6 contents">
+          <div class="row justify-content-center">
+            <div class="col-md-8">
+              <div class="mb-4">
+              <h3>Sign Up</h3>
+            </div>
+            <form th:action="@{/registration}" class="needs-validation" method="post" th:object="${user}" novalidate>
+              <div class="form-group first">
+                <label for="fullName">Business Name</label>
+                <input class="form-control"   type="text"
+                id="fullName"
+                name="Business Name"
+                th:field="*{fullName}" required>
+                <div class="invalid-feedback">
+                  Please Enter Business Name
+                </div>
+              </div>
+              
+              <div class="form-group last mb-4">
+                <label for="email">Email</label>
+                <input class="form-control" type="email"
+                id="email"
+                name="email"
+                th:field="*{email}" required>
+                <div class="invalid-feedback">
+                  Please Enter a valid Email
+                </div>
+              </div>
+              <div class="form-group last mb-4">
+                <label for="password">Password</label>
+                <input class="form-control"  type="password"
+                id="password"
+                name="pass"
+                th:field="*{password}" required>
+                <div class="invalid-feedback">
+                  Please Enter Password
+                </div>
+              </div>
+              <div class="form-group last mb-4">
+                <label for="email">District</label>
+                <input class="form-control" type="text"
+                       id="district"
+                       name="email"
+                       th:field="*{district}" required>
+                <div class="invalid-feedback">
+                  Please Enter District Name
+                </div>
+              </div>
+              <div class="form-group last mb-4">
+                <label for="email">Sector</label>
+                <input class="form-control" type="text"
+                       id="sector"
+                       name="email"
+                       th:field="*{sector}" required>
+                <div class="invalid-feedback">
+                  Please Enter Sector Name
+                </div>
+              </div>
+              <div class="form-group last mb-4">
+                <label for="email">Cell</label>
+                <input class="form-control" type="text"
+                       id="cell"
+                       name="cell"
+                       th:field="*{cell}" required>
+                <div class="invalid-feedback">
+                  Please Enter Cell Name
+                </div>
+              </div>
+              <div class="d-flex mb-5 align-items-center">
+                <label class="control control--checkbox mb-0"><span class="caption">Remember me</span>
+                  <input type="checkbox" checked="checked"/>
+                  <div class="control__indicator"></div>
+                </label>
+                <span class="ml-auto"><a href="@{/forgot-password}" class="forgot-pass">Forgot Password</a></span> 
+              </div>
+
+              <input  type="submit"
+              id="login-submit"
+              name="login-submit" value="Sign Up" class="btn btn-block btn-primary">
+
+              <a th:href="@{/login}"><span class="d-block text-left my-4 text-muted">&mdash; or Log in with &mdash;</span></a>
+              
+            </form>
+            </div>
+          </div>
+          
+        </div>
+        
+      </div>
+    </div>
+  </div>
+
+  
+    <script src="../../js/jquery-3.3.1.min.js"></script>
+    <script src="../../js/popper.min.js"></script>
+    <script src="../../js/bootstrap.min.js"></script>
+    <script src="../../js/main.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+  <script>
+    (function () {
+      'use strict'
+
+      // Fetch all the forms we want to apply custom Bootstrap validation styles to
+      var forms = document.querySelectorAll('.needs-validation')
+
+      // Loop over them and prevent submission
+      Array.prototype.slice.call(forms)
+              .forEach(function (form) {
+                form.addEventListener('submit', function (event) {
+                  if (!form.checkValidity()) {
+                    event.preventDefault()
+                    event.stopPropagation()
+                  }
+
+                  form.classList.add('was-validated')
+                }, false)
+              })
+    })()
+  </script>
+  </body>
+</html>

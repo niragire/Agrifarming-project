@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="/layout">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Expense</title>
+
+</head>
+<body>
+	<div layout:fragment="content">
+		<div class="content">
+
+			<div class="container">
+			<br>
+				  <a th:href="@{/api/expense/showNewExpenses}" class="btn btn-primary"><i class="material-icons">&#xE147;</i> <span>Add New Expense</span></a>
+
+				<div class="table-responsive">
+
+					<table class="table custom-table">
+						<thead>
+							<tr>
+								<th scope="col"><label class="control control--checkbox">
+										<input type="checkbox" class="js-check-all" />
+										<div class="control__indicator" />
+								</label></th>
+								<th scope="col">Name</th>
+								<th scope="col">Registered</th>
+								<th scope="col">Supplier</th>
+								<th scope="col">Quantity</th>
+								<th scope="col">Amount Spent</th>
+								<th scope="col">Action</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr th:each="expense:${listAllExpenses}">
+								<th scope="row"><label class="control control--checkbox">
+										<input type="checkbox" />
+										<div class="control__indicator" />
+								</label></th>
+								<td th:text="${expense.nameOfExpense}"></td>
+								<td th:text="${expense.createdAt}"></td>
+								<td th:text="${expense.supplier}"></td>
+								<td th:text="${expense.quantity}"></td>
+								<td th:text="${expense.amountSpent}"></td>
+								<td>
+								    <a th:href="@{/api/expense/updateExpenseById/{id}(id=${expense.expenseId})}" id="editButton" title="Edit" class="btn btn-success btn-xs">
+                                        <i class="fa fa-edit "></i>
+                                    </a>
+								 <a th:href="@{/api/expense/deleteExpenseById/{id}(id=${expense.expenseId})}" title="Remove" class="btn btn-danger btn-xs">
+                                        <i class="fa fa-trash-o "></i>
+                                    </a>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+
+
+			</div>
+
+		</div>
+	</div>
+</body>
+</html>

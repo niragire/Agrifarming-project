@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="/layout">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Category</title>
+
+</head>
+<body>
+	<div layout:fragment="content">
+		<div class="content">
+
+			<div class="container">
+			<br>
+				  <a th:href="@{/api/category/showNewCategory}" class="btn btn-primary"><i class="material-icons">&#xE147;</i> <span>Add New Category</span></a>
+
+				<div class="table-responsive">
+
+					<table class="table custom-table">
+						<thead>
+							<tr>
+								<th scope="col"><label class="control control--checkbox">
+										<input type="checkbox" class="js-check-all" />
+										<div class="control__indicator" />
+								</label></th>
+								<th scope="col">Name</th>
+								<th scope="col">Action</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr th:each="category:${listAllCategories}">
+								<th scope="row"><label class="control control--checkbox">
+										<input type="checkbox" />
+										<div class="control__indicator" />
+								</label></th>
+								<td th:text="${category.categoryName}"></td>
+								<td>
+								    <a th:href="@{/api/category/updateCategoryById/{id}(id=${category.categoryId})}" id="editButton" title="Edit" class="btn btn-success btn-xs">
+                                        <i class="fa fa-edit "></i>
+                                    </a>
+								 <a th:href="@{/api/category/deleteCategoryById/{id}(id=${category.categoryId})}" title="Remove Student" class="btn btn-danger btn-xs">
+                                        <i class="fa fa-trash-o "></i>
+                                    </a>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+
+
+			</div>
+
+		</div>
+	</div>
+    <script>
+    $('table #editButton').on('click',function(event){
+    	event.preventDefualt();
+    	var href=$(this).attr('href');
+    	$.get(href,function(category,status){
+    	 ('#name').value(category.categoryName);
+    	});
+    	$('#editModal').modal();
+    });
+    </script>
+</body>
+</html>
