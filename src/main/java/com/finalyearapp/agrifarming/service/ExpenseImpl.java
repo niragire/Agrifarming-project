@@ -30,8 +30,11 @@ public class ExpenseImpl implements ExpenseService{
 		expenseRepository.save(expense);
 		
 	}
-	public List<Expense> findAllExpenses(Long user_id){
-		return expenseRepository.findAllById(user_id);
+//	public List<Expense> findAllExpenses(Long user_id){
+//		return expenseRepository.findAllById(user_id);
+//	}
+	public List<Expense>findAllExpenses(){
+		return expenseRepository.findAll();
 	}
 	@Override
 	public Expense getExpenseById(Long id) {

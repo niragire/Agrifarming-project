@@ -16,6 +16,7 @@ public class testController {
 	@GetMapping("/layout")
 	public String Strtest(Model model,Authentication authentication) {
 		String findUserName=authentication.getName();
+		System.out.println("These are reaching here"+findUserName);
 		User user=userService.findByEmail(findUserName);
 		model.addAttribute("userLogged", user);
 		return "layout";

@@ -54,7 +54,7 @@ public class MainController {
 		model.addAttribute("categoryName",categoryName);
 		model.addAttribute("expenseNumber",expenseNumber);
 		model.addAttribute("category",categoryService.getAllCategories().size());
-		model.addAttribute("expense",expenseImpl.findAllExpenses(user.getId()).size());
+		model.addAttribute("expense",expenseImpl.findAllExpenses().size());
 		model.addAttribute("userLogged", user);
 		return "index";
 	}

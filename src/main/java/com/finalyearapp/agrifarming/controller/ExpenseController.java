@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.util.List;
+
 
 @Controller
 @RequestMapping("/api/expense")
@@ -29,7 +31,8 @@ public class ExpenseController{
 	public String homePage(Model model,Authentication authentication) {
 		String findAuthenticatedUser=authentication.getName();
 		User user=userService.findByEmail(findAuthenticatedUser);
-		model.addAttribute("listAllExpenses", expense.findAllExpenses(user.getId()));
+		System.out.println("User logged in is "+user.getId());
+		model.addAttribute("listAllExpenses", expense.findAllExpenses());
 		return "expense";
 	}
 	@GetMapping("/showNewExpenses")

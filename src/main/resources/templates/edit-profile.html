@@ -20,8 +20,8 @@
                     <h6 class="text-right">Edit Profile</h6>
                 </div>
                 <div class="row mt-2">
-                    <div class="col-md-6"><input type="text" class="form-control" placeholder="first name" th:value="${userLogged.firstName}"></div>
-                    <div class="col-md-6"><input type="text" class="form-control" th:value="${userLogged.lastName}" placeholder="Doe"></div>
+                    <div class="col-md-6"><input type="text" class="form-control" placeholder="first name" th:value="${userLogged.getFullName()}"></div>
+<!--                    <div class="col-md-6"><input type="text" class="form-control" th:value="${userLogged.lastName}" placeholder="Doe"></div>-->
                 </div>
                 <div class="row mt-3">
                     <div class="col-md-6"><input type="text" class="form-control" placeholder="Email" th:value="${userLogged.email}"></div>

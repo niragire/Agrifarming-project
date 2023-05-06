@@ -41,7 +41,20 @@ public class CategoryController {
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
-		return "updateCategory";
+		return "NewCategory";
+		
+	}
+	@GetMapping("/updateCategory")
+	public String findUpdateCategory(Model model) {
+		//try {
+		// Category category=categoryService.findCategoryById(id);
+		// model.addAttribute("category", category);
+		// }catch(Exception e) {
+		// 	e.printStackTrace();
+		// }
+		String category ="Ibirayi";
+		model.addAttribute("categoryName", category);
+		return "NewCategory";
 	}
 	@GetMapping("/deleteCategoryById/{id}")
 	public String deleteCategoryById(@PathVariable(value = "id")long id,Model model) {
